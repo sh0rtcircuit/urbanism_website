@@ -1,17 +1,18 @@
 (function () {
-  const carousels = document.querySelectorAll('[data-carousel]');
   const AUTOPLAY_MS = 3000;
 
-  carousels.forEach((carousel) => {
+  const initCarousel = (carousel) => {
     const track = carousel.querySelector('[data-carousel-track]');
     const slides = Array.from(carousel.querySelectorAll('[data-slide]'));
     const dots = Array.from(carousel.querySelectorAll('[data-dot]'));
     const prev = carousel.querySelector('[data-carousel-prev]');
     const next = carousel.querySelector('[data-carousel-next]');
 
-    if (!track || slides.length === 0) {
+    if (!track || slides.length === 0 || carousel.dataset.carouselReady === 'true') {
       return;
     }
+
+    carousel.dataset.carouselReady = 'true';
 
     let index = 0;
     let autoplayId = null;
@@ -62,6 +63,7 @@
       goTo(index - 1);
       startAutoplay();
     });
+
     next?.addEventListener('click', () => {
       goTo(index + 1);
       startAutoplay();
@@ -80,5 +82,19 @@
 
     render();
     startAutoplay();
-  });
+  };
+
+  window.initGalleryCarousels = (root) => {
+    const scope = root && root.querySelectorAll ? root : document;
+    const carousels = [];
+
+    if (scope.matches && scope.matches('[data-carousel]')) {
+      carousels.push(scope);
+    }
+
+    scope.querySelectorAll('[data-carousel]').forEach((node) => carousels.push(node));
+    carousels.forEach(initCarousel);
+  };
+
+  window.initGalleryCarousels(document);
 })();

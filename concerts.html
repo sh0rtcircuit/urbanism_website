@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Konzerte | Urbanism</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="static/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <header class="site-nav-wrap">
+      <nav class="site-nav">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a class="active" href="concerts.html">Konzerte</a>
+          <a href="booking.html">Booking</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Upcoming Shows</h2>
+          <span>Live erleben</span>
+        </div>
+        <div
+          data-shows-root
+          data-source-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSOlTEvbpt1radzheruEhEjNFKFpf1H4zI-ONorZW_UjMf4OuShE2CFZKJzti63Lj1dE3pU7eIrt_u0/pub?output=csv"
+        >
+          <p class="empty-state" data-shows-status>Shows werden geladen ...</p>
+          <ul class="show-list" data-shows-list></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="impressum.html">Impressum</a>
+      <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSOlTEvbpt1radzheruEhEjNFKFpf1H4zI-ONorZW_UjMf4OuShE2CFZKJzti63Lj1dE3pU7eIrt_u0/pub?output=csv" target="_blank" rel="noreferrer">Backstage</a>
+    </footer>
+
+    <script src="static/js/concerts-sheet.js"></script>
+  </body>
+</html>

@@ -17,6 +17,7 @@ ASSETS_PHOTOS_DIR = BASE_DIR / "assets" / "photos"
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "change-this-in-production")
 app.config["ADMIN_PASSWORD"] = os.environ.get("ADMIN_PASSWORD", "urbanism-admin")
+app.config["SHOWS_CSV_URL"] = os.environ.get("SHOWS_CSV_URL", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSOlTEvbpt1radzheruEhEjNFKFpf1H4zI-ONorZW_UjMf4OuShE2CFZKJzti63Lj1dE3pU7eIrt_u0/pub?output=csv")
 
 SOCIAL_LINKS = [
     {
@@ -249,12 +250,9 @@ def index() -> str:
 
 @app.route("/konzerte")
 def concerts() -> str:
-    upcoming, past = fetch_shows()
     return render_template(
         "concerts.html",
-        social_links=SOCIAL_LINKS,
-        upcoming_shows=upcoming,
-        past_shows=past,
+        shows_csv_url=app.config["SHOWS_CSV_URL"],
         show_public_nav=True,
         active_page="concerts",
     )

@@ -1,52 +1,55 @@
-# Urbanism Website
+# Urbanism Website (Static)
 
-Leichtgewichtige Band-Webseite mit:
-- Neon-Website mit mehreren Unterseiten
-- Social-Links (Instagram, YouTube, Spotify)
-- Tourdaten auf eigener Konzertseite (kommend + vergangen)
-- Booking-Seite für Veranstalter
-- Mini-Adminbereich zum Pflegen der Shows
+Statische Band-Website für lokalen Betrieb und GitHub Pages mit identischer Codebase.
 
-## Setup
+## Seiten
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-```
+- `index.html` (Home)
+- `concerts.html` (Upcoming Shows aus Google Sheet)
+- `booking.html` (Kontakt + Press Kit & Tech Rider)
+- `impressum.html` (Impressum + rechtliche Hinweise)
 
-Optional in `.env` anpassen:
-- `SECRET_KEY`
-- `ADMIN_PASSWORD`
-
-## Start
+## Lokal starten
 
 ```bash
-source .venv/bin/activate
-export $(grep -v '^#' .env | xargs)
-python app.py
+cd /Users/andregensler/code/urbanism_website
+python3 -m http.server 8000
 ```
 
-Dann öffnen: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+Dann öffnen: [http://localhost:8000](http://localhost:8000)
 
-## Admin
+## GitHub Pages Deployment
 
-- Login: [http://127.0.0.1:5000/admin/login](http://127.0.0.1:5000/admin/login)
-- Standardpasswort (nur lokal): `urbanism-admin`
-- Bitte für Deployment unbedingt ändern (`ADMIN_PASSWORD`)
+1. Repo nach GitHub pushen.
+2. In GitHub: `Settings -> Pages`.
+3. `Deploy from branch` aktivieren (`main` / root).
+4. Optional: Custom Domain setzen.
 
-## Inhalte anpassen
+## Upcoming Shows via Google Sheet
 
-- Bilder liegen unter `static/images/photos/` und werden automatisch auf der Startseite angezeigt.
-- Logo-Dateien liegen unter `static/images/logos/`.
-- Quell-Assets sind separat unter `assets/photos/` und `assets/logos/` organisiert.
-- Zum Austauschen von Bildern einfach Dateien in `static/images/photos/` ersetzen (Logo bleibt getrennt).
-- Neue Bilder kannst du auch direkt in `assets/photos/` legen: sie werden beim Seitenaufruf automatisch nach `static/images/photos/` synchronisiert und in der Galerie angezeigt.
+Die Konzerte-Seite lädt CSV direkt aus diesem veröffentlichten Sheet:
 
-## Datenhaltung
+- [Google Sheet CSV](https://docs.google.com/spreadsheets/d/e/2PACX-1vSOlTEvbpt1radzheruEhEjNFKFpf1H4zI-ONorZW_UjMf4OuShE2CFZKJzti63Lj1dE3pU7eIrt_u0/pub?output=csv)
 
-Die Shows werden in einer lokalen SQLite-Datei gespeichert:
-- `data.db`
+Erwartete Spalten im Sheet:
 
-Das macht die Übergabe an euren Booker einfach, solange er Zugriff auf dieselbe Deployment-Instanz hat.
+```text
+show_date,title,city,venue,ticket_url,notes,active
+```
+
+Hinweise:
+- `show_date` im Format `YYYY-MM-DD`
+- nur kommende Shows werden angezeigt
+- `active=false` blendet einen Eintrag aus
+
+## Galerie aus Foto-Ordner
+
+Die Gallery nutzt `static/data/gallery.json`.
+
+Wenn du neue Bilder in `static/images/photos/` legst, aktualisiere die Manifest-Datei mit:
+
+```bash
+./scripts/generate-gallery-manifest.sh
+```
+
+Danach Commit/Push oder lokal neu laden.
