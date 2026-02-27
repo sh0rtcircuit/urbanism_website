@@ -1,6 +1,7 @@
 (function () {
   const root = document.getElementById('homeGallery');
   const heroVisual = document.getElementById('heroVisual');
+  const heroBg = document.getElementById('heroBg');
   if (!root) {
     return;
   }
@@ -21,6 +22,9 @@
     const firstImage = buildImageUrl(files[0]);
     if (heroVisual) {
       heroVisual.style.setProperty('--hero-image', `url('${firstImage}')`);
+    }
+    if (heroBg) {
+      heroBg.src = firstImage;
     }
 
     const slides = files
