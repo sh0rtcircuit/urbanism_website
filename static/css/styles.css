@@ -11,12 +11,21 @@
   --shadow: 0 0 40px #2df6ff1f;
 }
 
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   font-family: "Space Grotesk", sans-serif;
   color: var(--text);
   background: radial-gradient(circle at 15% 15%, #18244a 0%, transparent 45%),
@@ -272,6 +281,9 @@ button:hover {
 
 .gallery-carousel {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .gallery-track-wrap {
@@ -286,6 +298,8 @@ button:hover {
 .gallery-track {
   display: flex;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   transition: transform 0.35s ease;
   will-change: transform;
 }
