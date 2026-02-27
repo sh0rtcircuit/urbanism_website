@@ -76,7 +76,7 @@ p {
 }
 
 .site-nav {
-  width: min(1100px, 94vw);
+  width: min(1100px, calc(100% - 1rem));
   margin: 0 auto;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -113,7 +113,7 @@ p {
 }
 
 .container {
-  width: min(1100px, 94vw);
+  width: min(1100px, calc(100% - 1rem));
   margin: 1rem auto 2.8rem;
   display: grid;
   gap: 1.2rem;
@@ -192,6 +192,7 @@ p {
   margin: 0.9rem auto 0;
   line-height: 1.55;
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .link-grid {
@@ -465,7 +466,7 @@ button:hover {
 }
 
 .site-footer {
-  width: min(1100px, 94vw);
+  width: min(1100px, calc(100% - 1rem));
   margin: 0 auto 2rem;
   display: flex;
   justify-content: center;
@@ -588,7 +589,7 @@ textarea {
   }
 
   .container {
-    width: min(100vw - 1rem, 700px);
+    width: min(700px, calc(100% - 1rem));
     margin-top: 0.8rem;
   }
 
