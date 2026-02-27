@@ -14,7 +14,7 @@
 html {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -31,7 +31,7 @@ body {
   background: radial-gradient(circle at 15% 15%, #18244a 0%, transparent 45%),
     radial-gradient(circle at 80% 5%, #3a1234 0%, transparent 35%), var(--bg);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1,
@@ -352,8 +352,11 @@ button:hover {
 .gallery-dots {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.45rem;
   margin-top: 0.65rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .gallery-dot {
