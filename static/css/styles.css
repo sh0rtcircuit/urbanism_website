@@ -191,6 +191,7 @@ p {
   flex-wrap: wrap;
   gap: 0.65rem;
   justify-content: center;
+  width: 100%;
 }
 
 .social-link,
@@ -593,6 +594,17 @@ textarea {
   .home-page .panel,
   .home-page .hero {
     padding: 0.95rem;
+  }
+
+  .home-page .link-grid {
+    justify-content: center;
+    gap: 0.55rem;
+  }
+
+  .home-page .social-link {
+    flex: 1 1 calc(50% - 0.55rem);
+    max-width: calc(50% - 0.55rem);
+    min-width: 0;
   }
 
   .home-page .gallery-carousel,
