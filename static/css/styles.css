@@ -573,6 +573,7 @@ textarea {
   }
 
   .container {
+    width: min(100vw - 1rem, 700px);
     margin-top: 0.8rem;
   }
 
@@ -582,6 +583,22 @@ textarea {
 
   .hero-content {
     padding: 0.7rem;
+    max-width: 100%;
+  }
+
+  .hero-logo {
+    width: min(78vw, 460px);
+  }
+
+  .home-page .panel,
+  .home-page .hero {
+    padding: 0.95rem;
+  }
+
+  .home-page .gallery-carousel,
+  .home-page .gallery-track-wrap {
+    width: 100%;
+    max-width: 100%;
   }
 
   .gallery,
