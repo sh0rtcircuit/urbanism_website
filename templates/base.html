@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Urbanism{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    {% if show_public_nav %}
+      <header class="site-nav-wrap">
+        <nav class="site-nav">
+          <div class="nav-links">
+            <a class="{% if active_page == 'home' %}active{% endif %}" href="{{ url_for('index') }}">Home</a>
+            <a class="{% if active_page == 'concerts' %}active{% endif %}" href="{{ url_for('concerts') }}">Konzerte</a>
+            <a class="{% if active_page == 'booking' %}active{% endif %}" href="{{ url_for('booking') }}">Booking</a>
+          </div>
+        </nav>
+      </header>
+    {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack">
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+    {% if show_public_nav %}
+      <footer class="site-footer">
+        <a href="{{ url_for('impressum') }}">Impressum</a>
+        {% if active_page == 'concerts' %}
+          <a href="{{ url_for('admin_login') }}">Backstage</a>
+        {% endif %}
+      </footer>
+    {% endif %}
+  </body>
+</html>

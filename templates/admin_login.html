@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Urbanism Admin Login{% endblock %}
+{% block content %}
+<main class="container admin-shell">
+  <section class="panel narrow">
+    <div class="panel-head">
+      <h2>Admin Login</h2>
+      <span>Tourdaten pflegen</span>
+    </div>
+    <form class="stack" method="post" action="{{ url_for('admin_login') }}">
+      <label>
+        Passwort
+        <input type="password" name="password" autocomplete="current-password" required />
+      </label>
+      <button type="submit" class="social-link">Einloggen</button>
+    </form>
+    <a class="subtle-link" href="{{ url_for('index') }}">Zurück zur Webseite</a>
+  </section>
+</main>
+{% endblock %}

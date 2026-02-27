@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Konzerte | Urbanism{% endblock %}
+{% block content %}
+<main class="container">
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Upcoming Shows</h2>
+      <span>Live erleben</span>
+    </div>
+    {% if upcoming_shows %}
+    <ul class="show-list">
+      {% for show in upcoming_shows %}
+      <li>
+        <div>
+          <p class="show-date">{{ show.show_date }}</p>
+          <h3>{{ show.title }}</h3>
+          <p>{{ show.city }} · {{ show.venue }}</p>
+          {% if show.notes %}<p class="notes">{{ show.notes }}</p>{% endif %}
+        </div>
+        {% if show.ticket_url %}
+        <a class="ticket" href="{{ show.ticket_url }}" target="_blank" rel="noreferrer">Tickets</a>
+        {% else %}
+        <span class="ticket ticket-disabled">Info folgt</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty-state">Neue Shows werden bald announced.</p>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}
